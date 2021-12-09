@@ -11,7 +11,7 @@ namespace DL
     {
         public static string Get()
         {
-            string conexion =ConfigurationManager.ConnectionStrings["JTorresProgramacionNCapas08122021"].ConnectionString;
+            string conexion = ConfigurationManager.ConnectionStrings["JTorresProgramacionNCapas08122021"].ConnectionString;
 
             return conexion;
         }

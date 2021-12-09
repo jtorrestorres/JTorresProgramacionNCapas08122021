@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace ML
 {
-    public class Materia
+    public class Materia//Usuarios
     {
+        //dato primitivo  //objeto complejo
         public int IdMateria { get; set; } //2,000,000,000
         public string Nombre { get; set; }
+        public string ApellidoPaterno { get; set; }
+        public string ApellidoMaterno { get; set; }
         public byte Creditos { get; set; } //{0..255}
         public decimal Costo { get; set; }    
     }
