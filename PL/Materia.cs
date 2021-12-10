@@ -10,7 +10,25 @@ namespace PL
     {
         public static void GetAll()
         {
+            ML.Result result = BL.Materia.GetAll();
 
+            if(result.Correct)
+            {
+                foreach(ML.Materia materia in result.Objects)
+                {
+                    Console.WriteLine("IdMateria: " + materia.IdMateria);
+                    Console.WriteLine("Nombre: " + materia.Nombre);
+                    Console.WriteLine("Costo: " + materia.Costo);
+                    Console.WriteLine("Creditos: " + materia.Creditos);
+
+                    Console.WriteLine("--------");
+                }
+                Console.WriteLine(result.Objects);
+            }
+            else
+            {
+                Console.WriteLine("Ocurrió un error al traer la información del usuario: " +result.ErrorMessage);
+            }
         }
 
         public static void GetById()

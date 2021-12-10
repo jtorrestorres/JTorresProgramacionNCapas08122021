@@ -10,6 +10,17 @@ namespace BL
 {
     public class Materia
     {
+        public static int Prueba()
+        {
+            return 1;
+        }
+
+        public static string Prueba2()
+        {
+            return "";
+        }
+
+
         public static ML.Result GetAll()
         {
             ML.Result result = new ML.Result();
@@ -33,7 +44,8 @@ namespace BL
                             cmd.Connection.Open();
 
                             if (tableMateria.Rows.Count>0)
-                            {                               
+                            {
+                                result.Objects = new List<object>();
                                 foreach (DataRow row in tableMateria.Rows) //
                                 {
                                     ML.Materia materia = new ML.Materia();
