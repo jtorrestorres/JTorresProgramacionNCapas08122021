@@ -10,8 +10,8 @@ namespace PL
     {
         static void Main(string[] args)
         {
-            PL.Materia.GetAll();
-
+            //PL.Materia.GetAll();
+            PL.Materia.GetById();
             Console.ReadKey();
         }
     }

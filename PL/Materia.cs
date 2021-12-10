@@ -33,7 +33,24 @@ namespace PL
 
         public static void GetById()
         {
+            ML.Materia materia = new ML.Materia();
 
+            Console.WriteLine("Ingrese el Id de la materia");
+            materia.IdMateria = int.Parse(Console.ReadLine());
+
+            ML.Result result = BL.Materia.GetById(materia.IdMateria);
+
+            if (result.Correct)
+            {
+                Console.WriteLine("IdMateria: " + ((ML.Materia)result.Object).IdMateria ); //unboxing
+                Console.WriteLine("Nombre: " + ((ML.Materia)result.Object).Nombre); //unboxing
+                Console.WriteLine("Costo: " + ((ML.Materia)result.Object).Costo); //unboxing
+                Console.WriteLine("Creditos: " + ((ML.Materia)result.Object).Creditos); //unboxing
+            }
+            else
+            {
+
+            }
         }
         //PL
         //Usuario

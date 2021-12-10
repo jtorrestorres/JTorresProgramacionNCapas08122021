@@ -8,8 +8,6 @@ namespace ML
 {
     public class Result
     {
-        //var string bool 
-        //object string bool decimal ML.Result
         public bool Correct { get; set; }
         public string ErrorMessage { get; set; }
         public object Object { get; set; }
