@@ -11,7 +11,7 @@ namespace PL
         static void Main(string[] args)
         {
             //PL.Materia.GetAll();
-            PL.Materia.GetById();
+            PL.Materia.Add();
             Console.ReadKey();
         }
     }

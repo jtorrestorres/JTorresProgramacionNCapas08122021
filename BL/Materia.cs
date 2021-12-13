@@ -131,7 +131,8 @@ namespace BL
                                 materia.Nombre = row[1].ToString();
                                 materia.Creditos = byte.Parse(row[2].ToString());
                                 materia.Costo = decimal.Parse(row[3].ToString());
-                                                                                          
+                                materia.Direccion = new ML.Direccion();
+                                materia.Direccion.Calle = row[4].ToString();
                                 result.Object = materia;  //boxing    --unboxing
 
                                 result.Correct = true;

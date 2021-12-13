@@ -56,16 +56,28 @@ namespace PL
         //Usuario
         public static void Add()
         {
-            ML.Materia materia = new ML.Materia(); 
+            ML.Materia materia = new ML.Materia();
 
             Console.WriteLine("Ingrese el nombre de la materia");
             materia.Nombre = Console.ReadLine();
 
             Console.WriteLine("Ingrese los créditos de la materia");
-            materia.Creditos =  byte.Parse(Console.ReadLine());
+            materia.Creditos = byte.Parse(Console.ReadLine());
 
             Console.WriteLine("Ingrese el costo de la materia");
             materia.Costo = decimal.Parse(Console.ReadLine());
+
+            Console.WriteLine("Ingresa el nombre de la calle");
+
+            materia.Direccion = new ML.Direccion();
+            materia.Direccion.Calle = Console.ReadLine();
+
+            Console.WriteLine("Ingresa el Numero Interior de la calle");
+            materia.Direccion.NumeroInterior = int.Parse(Console.ReadLine());
+
+
+            Console.WriteLine("Ingresa el nombre Numero Exterior calle");
+            materia.Direccion.NumeroExterior = int.Parse(Console.ReadLine());
 
 
             ML.Result result=BL.Materia.Add(materia);
