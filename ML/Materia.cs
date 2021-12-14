@@ -16,7 +16,7 @@ namespace ML
         public string Sexo { get; set; }
         public string FechaNacimiento { get; set; }
         public byte Creditos { get; set; } //{0..255}
-        public decimal Costo { get; set; }
+        public decimal Costo { get; set; } 
         public ML.Direccion Direccion { get; set; }
     }
 }
