@@ -12,9 +12,9 @@ namespace PL
         {
             ML.Result result = BL.Materia.GetAll();
 
-            if(result.Correct)
+            if (result.Correct)
             {
-                foreach(ML.Materia materia in result.Objects)
+                foreach (ML.Materia materia in result.Objects)
                 {
                     Console.WriteLine("IdMateria: " + materia.IdMateria);
                     Console.WriteLine("Nombre: " + materia.Nombre);
@@ -27,7 +27,7 @@ namespace PL
             }
             else
             {
-                Console.WriteLine("Ocurrió un error al traer la información del usuario: " +result.ErrorMessage);
+                Console.WriteLine("Ocurrió un error al traer la información del usuario: " + result.ErrorMessage);
             }
         }
 
@@ -42,7 +42,7 @@ namespace PL
 
             if (result.Correct)
             {
-                Console.WriteLine("IdMateria: " + ((ML.Materia)result.Object).IdMateria ); //unboxing
+                Console.WriteLine("IdMateria: " + ((ML.Materia)result.Object).IdMateria); //unboxing
                 Console.WriteLine("Nombre: " + ((ML.Materia)result.Object).Nombre); //unboxing
                 Console.WriteLine("Costo: " + ((ML.Materia)result.Object).Costo); //unboxing
                 Console.WriteLine("Creditos: " + ((ML.Materia)result.Object).Creditos); //unboxing
@@ -56,8 +56,13 @@ namespace PL
         //Usuario
         public static void Add()
         {
-            ML.Materia materia = new ML.Materia();
+            string Nombre;
+            bool respuesta;
+            
+            respuesta = false;
+            Nombre = "Jesús";
 
+            ML.Materia materia = new ML.Materia();
             Console.WriteLine("Ingrese el nombre de la materia");
             materia.Nombre = Console.ReadLine();
 
@@ -80,15 +85,24 @@ namespace PL
             materia.Direccion.NumeroExterior = int.Parse(Console.ReadLine());
 
 
-            ML.Result result=BL.Materia.Add(materia);
-            if (result.Correct)
+            ML.Result resultDireccion = BL.Direccion.Add(materia.Direccion);
+
+            if (resultDireccion.Correct)
             {
-                Console.WriteLine("La materia ha sido insertada correctamente");
+                materia.Direccion.IdDireccion = ((int)resultDireccion.Object);
+
+                ML.Result result = BL.Materia.Add(materia);
+                if (result.Correct)
+                {
+                    Console.WriteLine("La materia ha sido insertada correctamente");
+                }
+                else
+                {
+                    Console.WriteLine("Ocurrió un error al insertar la materia " + result.ErrorMessage);
+                }
             }
-            else
-            {
-                Console.WriteLine("Ocurrió un error al insertar la materia " + result.ErrorMessage);
-            }
+
+               
         }
 
         public static void Update()
