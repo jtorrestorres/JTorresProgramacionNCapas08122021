@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e152fda8ec754b96af773e8b5d7eaa3c" Name="Diagram1">
+        <EntityTypeShape EntityType="JTorresProgramacionNCapas08122021Model.Colonia" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JTorresProgramacionNCapas08122021Model.Direccion" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="JTorresProgramacionNCapas08122021Model.Estado" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JTorresProgramacionNCapas08122021Model.Materia" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JTorresProgramacionNCapas08122021Model.Municipio" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JTorresProgramacionNCapas08122021Model.Pai" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JTorresProgramacionNCapas08122021Model.Usuario" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="JTorresProgramacionNCapas08122021Model.FK__Colonia__IdMunic__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="JTorresProgramacionNCapas08122021Model.FK__Direccion__IdCol__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="JTorresProgramacionNCapas08122021Model.FK__Usuario__IdDirec__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="JTorresProgramacionNCapas08122021Model.FK__Municipio__IdEst__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="JTorresProgramacionNCapas08122021Model.FK_Estado_Pais" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

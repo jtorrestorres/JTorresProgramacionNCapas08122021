@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\JTorresProgramacionNCapas_20102021\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\JTorresProgramacionNCapas_20102021\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,6 +56,10 @@
     <ProjectReference Include="..\DL\DL.csproj">
       <Project>{6abe8791-14f4-46da-b6f4-8e00ae3cd43b}</Project>
       <Name>DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DL_EF\DL_EF.csproj">
+      <Project>{e727772d-cb32-48b7-9969-e0dd4d39b8b9}</Project>
+      <Name>DL_EF</Name>
     </ProjectReference>
     <ProjectReference Include="..\ML\ML.csproj">
       <Project>{0102c931-e99f-41ab-9cd0-343cfe9dbb4a}</Project>

@@ -20,3 +20,6 @@ namespace ML
         public ML.Direccion Direccion { get; set; }
     }
 }
+
+
+//Add, update, delete, GetAll, GetById -> SP | 
