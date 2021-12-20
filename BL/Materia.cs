@@ -84,6 +84,7 @@ namespace BL
                 result.Ex = ex;
             }
 
+            result.Correct = true;
             return result;
 
         }
