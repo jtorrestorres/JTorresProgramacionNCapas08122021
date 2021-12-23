@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Semestre.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="Materia.cs" />

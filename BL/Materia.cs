@@ -133,7 +133,7 @@ namespace BL
                                 materia.Creditos = byte.Parse(row[2].ToString());
                                 materia.Costo = decimal.Parse(row[3].ToString());
                                 materia.Direccion = new ML.Direccion();
-                                materia.Direccion.Calle = row[4].ToString();
+                               // materia.Direccion.Calle = row[4].ToString();
                                 result.Object = materia;  //boxing    --unboxing
 
                                 result.Correct = true;
@@ -281,7 +281,7 @@ namespace BL
 
 
         }
-        public static void Update()
+        public static void Update(ML.Materia materia)
         {
 
         }
