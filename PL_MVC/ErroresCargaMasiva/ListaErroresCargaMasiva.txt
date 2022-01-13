@@ -1,0 +1,2 @@
+No se insertó la materia con nombre:Ingles V1Creditos:5Error: The INSERT statement conflicted with the FOREIGN KEY constraint "FK__Materia__IdSemes__49C3F6B7". The conflict occurred in database "JTorresProgramacionNCapas08122021", table "dbo.Semestre", column 'IdSemestre'.
+The statement has been terminated.

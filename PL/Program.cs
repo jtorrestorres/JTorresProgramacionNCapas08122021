@@ -10,6 +10,7 @@ namespace PL
     {
         static void Main(string[] args)
         {
+            PL.Materia.ReadFile();
             //PL.Materia.GetAll();
             PL.Materia.Add();
             Console.ReadKey();

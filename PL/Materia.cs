@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,65 @@ namespace PL
 {
     public class Materia
     {
+        public static void ReadFile()
+        {
+
+            StreamReader Textfile = new StreamReader(@"C:\ArchivosPrueba\CargaMasiva.txt");
+            string line;
+            bool isFirstLine = true;
+
+            ML.Result resultErrores = new ML.Result();
+            resultErrores.Objects = new List<object>();
+
+            while ((line = Textfile.ReadLine()) != null)
+            {
+                if (isFirstLine)
+                {
+                    isFirstLine = false;
+                    line = Textfile.ReadLine();
+                }
+
+                //log errores
+
+                Console.WriteLine(line);
+                string[] datos = line.Split('|');
+
+                ML.Materia materia = new ML.Materia();
+                materia.Nombre = datos[0];
+                materia.Creditos = byte.Parse(datos[1]);
+                materia.Costo = decimal.Parse(datos[2]);
+                materia.Semestre = new ML.Semestre();
+                materia.Semestre.IdSemestre = int.Parse(datos[3]);
+
+                ML.Result result = BL.Materia.Add(materia);
+
+                if(!result.Correct) //si el usuario se insertó correctamente
+                {
+                    resultErrores.Objects.Add(
+                        "No se insertó la materia con nombre:" + materia.Nombre + "Creditos:" + materia.Creditos +
+                        "Error: " + result.ErrorMessage
+                    );
+                }
+            }
+
+
+            TextWriter tw = new StreamWriter(@"C:\ArchivosPrueba\ListaErroresCargaMasiva.txt");
+
+            foreach (string error in resultErrores.Objects)
+            {
+                tw.WriteLine(error);
+            }
+
+            tw.Close();
+
+
+            if (resultErrores.Objects.Count > 0)
+            {
+                Console.WriteLine("Ocurrió un error al insertar los registros, consulte el log de errores en la siguiente dirección");
+            }
+
+
+        }
         public static void GetAll()
         {
             ML.Result result = BL.Materia.GetAll();
@@ -58,7 +118,7 @@ namespace PL
         {
             string Nombre;
             bool respuesta;
-            
+
             respuesta = false;
             Nombre = "Jesús";
 
@@ -102,7 +162,7 @@ namespace PL
                 }
             }
 
-               
+
         }
 
         public static void Update()

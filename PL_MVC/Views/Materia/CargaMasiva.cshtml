@@ -1,0 +1,27 @@
+﻿@model ML.Result
+@{
+    ViewBag.Title = "CargaMasiva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<table class="table table-bordered table-responsive">
+    <thead>
+        <tr class="text-center">
+            <td>IdRegistro</td>
+            <td>Error</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ML.Semestre error in Model.Objects)
+        {
+            <tr class="text-center">
+                <td>@error.IdSemestre</td>
+                <td>@error.Nombre</td>
+            </tr>
+        }
+    </tbody>
+</table>

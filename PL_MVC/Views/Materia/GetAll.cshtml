@@ -19,6 +19,40 @@
     @Html.ActionLink("+", "Form", "Materia", htmlAttributes: new { @class = "btn btn-success" })
 </div>
 
+<div class="row">
+    @*<div class="col-md-12">*@
+
+    @using (Html.BeginForm("GetAll", "Materia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {    
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Semestre)
+                @Html.DropDownListFor(model => model.Semestre.IdSemestre, new SelectList(Model.Semestre.Semestres, "IdSemestre", "Nombre"), "Selecciona un semestre correspondiente", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Semestre.IdSemestre)
+
+            </div>
+        </div>
+               
+        @*<div class="form-group">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Semestre)
+                @Html.DropDownListFor(model => model.Semestre.IdSemestre, new SelectList(Model.Semestre.Semestres, "IdSemestre", "Nombre"), "Selecciona un semestre correspondiente", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Semestre.IdSemestre)
+
+            </div>
+        </div>*@
+        <div class="col-md-1">
+            <input type="submit" value="Buscar" class="btn btn-info" />
+        </div>
+      
+
+       
+    }
+   
+</div>
+
+<br />
+
 <table class="table table-bordered table-responsive">
     <thead>
         <tr>
@@ -27,23 +61,26 @@
             <td>Nombre</td>
             <td>Creditos</td>
             <td>Costo</td>
+            <td>Descargar</td>
             <td>Eliminar</td>
         </tr>
     </thead>
     <tbody>
         @foreach (ML.Materia materia in Model.Materias)
         {
-            <tr>
-                <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Materia", new { IdMateria = materia.IdMateria })"></a></td>
-                <td class="hidden">@materia.IdMateria</td>
-                <td>@materia.Nombre</td>
-                <td>@materia.Creditos</td>
-                <td>@materia.Costo</td>
-                <td><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Materia", new { IdMateria= materia.IdMateria})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
-            </tr>
+        <tr>
+            <td><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Materia", new { IdMateria = materia.IdMateria })"></a></td>
+            <td class="hidden">@materia.IdMateria</td>
+            <td>@materia.Nombre</td>
+            <td>@materia.Creditos</td>
+            <td>@materia.Costo</td>
+            <td><a class="btn btn-info glyphicon glyphicon-download" href="@Url.Action("Descargar", "Materia", new { IdMateria= materia.IdMateria})"></a></td>
+            <td><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Materia", new { IdMateria= materia.IdMateria})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+            @*<td><img src="~/fonts/glyphicons-halflings-regular.svg" /></td>*@
+        </tr>
         }
 
-  
+
 
 
     </tbody>

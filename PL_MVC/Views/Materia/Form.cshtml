@@ -17,6 +17,30 @@
                     @*hidden*@
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.Nombre)
+
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-map-marker" id="basic-addon1"></span>
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Nombre)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.Nombre)
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-font" id="basic-addon1"></span>
+                        @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtNombre" })
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-md-3">
                     @Html.LabelFor(model => model.Nombre)
@@ -24,6 +48,7 @@
                     @Html.ValidationMessageFor(model => model.Nombre)
                 </div>
             </div>
+            @Html.HiddenFor(model=> model.Action)
             <div class="form-group">
                 <div class="col-md-3">
                     @Html.LabelFor(model => model.Creditos)
@@ -48,7 +73,7 @@
 
                 </div>
             </div>
-           
+
 
             <div class="form-group">
                 <div class="col-md-3">
@@ -63,3 +88,7 @@
 
             </div>
         </div>
+
+<style>
+    
+</style>
