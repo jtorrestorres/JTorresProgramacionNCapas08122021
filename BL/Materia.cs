@@ -21,7 +21,7 @@ namespace BL
         }
 
 
-        public static ML.Result GetAll()
+        public static ML.Result GetAll(ML.Materia materiaItem)
         {
             ML.Result result = new ML.Result();
 

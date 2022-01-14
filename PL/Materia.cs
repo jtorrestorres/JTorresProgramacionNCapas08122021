@@ -70,7 +70,7 @@ namespace PL
         }
         public static void GetAll()
         {
-            ML.Result result = BL.Materia.GetAll();
+            ML.Result result = BL.Materia.GetAll(new ML.Materia());
 
             if (result.Correct)
             {

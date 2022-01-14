@@ -72,7 +72,7 @@ namespace PL_MVC.Controllers
             ML.Materia materia = new ML.Materia();
 
 
-            ML.Result resultMaterias = BL.Materia.GetAll();
+            ML.Result resultMaterias = BL.Materia.GetAll(new ML.Materia());
             ML.Result resultSemestres = BL.Semestre.GetAll();
 
             if (resultMaterias.Correct)
@@ -105,9 +105,9 @@ namespace PL_MVC.Controllers
 
         [HttpPost]
         public ActionResult GetAll(ML.Materia materia) //Mostrar una tabla con la información de las materias
-        { 
+        {
 
-            ML.Result resultMaterias = BL.Materia.GetByIdSemestre(materia.Semestre.IdSemestre);
+            ML.Result resultMaterias = BL.Materia.GetAll(materia);
             ML.Result resultSemestres = BL.Semestre.GetAll();
 
             if (resultMaterias.Correct)
