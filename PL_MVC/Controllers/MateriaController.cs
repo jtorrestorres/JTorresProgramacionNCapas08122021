@@ -14,7 +14,7 @@ namespace PL_MVC.Controllers
 
         //public static ML.Result ReadFile(HttpPostedFileBase file)
         //{
-            
+
         //    StreamReader Textfile = new StreamReader(file.InputStream);
         //    string line;
         //    bool isFirstLine = true;
@@ -54,11 +54,11 @@ namespace PL_MVC.Controllers
         //    }
 
 
-            
+
 
 
         //    return resultErrores;
-           
+
 
 
 
@@ -92,14 +92,14 @@ namespace PL_MVC.Controllers
                     ViewBag.Message = resultSemestres.ErrorMessage;
                     return PartialView("Modal");
                 }
-            }            
+            }
             else
             {
                 ViewBag.Message = resultMaterias.ErrorMessage;
                 return PartialView("Modal");
             }
 
-            
+
         }
 
 
@@ -138,7 +138,7 @@ namespace PL_MVC.Controllers
             //HttpPostedFileBase file = Request.Files["archivoTXT"];
 
             ////result= ReadFile(file);
-            
+
 
             //if (!result.Correct) //Errores 
             //{
@@ -175,8 +175,8 @@ namespace PL_MVC.Controllers
 
         public FileResult Descargar(int IdMateria)
         {
-            
-            ML.Result result=BL.Materia.GetById(IdMateria);
+
+            ML.Result result = BL.Materia.GetById(IdMateria);
 
             System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(result.Object.GetType());
 
@@ -190,7 +190,7 @@ namespace PL_MVC.Controllers
 
         [HttpGet]
         public ActionResult Form(string Clave)  //null //agregar y actualizar
-            {
+        {
             ML.Materia materia = new ML.Materia();
 
             ML.Result resultSemestre = BL.Semestre.GetAll();
@@ -225,9 +225,9 @@ namespace PL_MVC.Controllers
             {
                 //error
             }
-            
 
-            
+
+
 
             return View(materia);
         }
@@ -235,23 +235,32 @@ namespace PL_MVC.Controllers
         [HttpPost]
         public ActionResult Form(ML.Materia materia)  //null //agregar y actualizar
         {
-            if (materia.Action == "Add")
+            if (ModelState.IsValid)
             {
-                //Add
-                BL.Materia.Add(materia);
-            }
-            else
-                if(materia.Action=="Update")
-            {//update
-                BL.Materia.Update(materia);
-            }
-            else
-            {
-                ViewBag.Message = "Acción del formulario no reconocida";
-                return PartialView("PartialPV");
+                if (materia.Action == "Add")
+                {
+                    //Add
+                    BL.Materia.Add(materia);
+                }
+                else
+               if (materia.Action == "Update")
+                {//update
+                    BL.Materia.Update(materia);
+                }
+                else
+                {
+                    ViewBag.Message = "Acción del formulario no reconocida";
+                    return PartialView("PartialPV");
+                }
             }
 
-            return View();
+
+            ML.Result resultSemestre = BL.Semestre.GetAll();
+
+            materia.Semestre = new ML.Semestre();
+            materia.Semestre.Semestres = resultSemestre.Objects;
+
+            return View(materia);
         }
     }
 }
