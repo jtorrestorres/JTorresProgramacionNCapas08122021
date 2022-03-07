@@ -261,6 +261,9 @@ namespace PL_MVC.Controllers
             materia.Semestre.Semestres = resultSemestre.Objects;
 
             return View(materia);
+            return PartialView(materia);
+            return PartialView("PVModal", materia);
+            
         }
     }
 }

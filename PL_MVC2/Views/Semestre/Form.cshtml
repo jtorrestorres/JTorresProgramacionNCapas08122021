@@ -1,0 +1,59 @@
+﻿@model ML.Semestre
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Semestre</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Complete los campos para registrar un semestre</h5>
+        </div>
+    </div>
+
+    <hr />
+    @using (Html.BeginForm("Form", "Semestre", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.IdSemestre, new { @class = "hidden" })
+                @Html.TextBoxFor(model => model.IdSemestre, new { @class = "hidden form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Descripcion)
+                @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-1">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+            <div class="col-md-1">
+                @Html.ActionLink("Regresar", "GetAll", "Semestre", htmlAttributes: new { @class = "btn btn-danger" })
+            </div>
+        </div>
+
+    }
+
+
+
+
+
+    </div>
+

@@ -9,8 +9,12 @@ namespace PL
 {
     public class Materia
     {
-        public static void ReadFile()
+        int ResultadoGlobal;
+
+        public void ReadFile()
         {
+            ResultadoGlobal = 1;
+            int ResultadoFile; //local
 
             StreamReader Textfile = new StreamReader(@"C:\ArchivosPrueba\CargaMasiva.txt");
             string line;
@@ -68,8 +72,10 @@ namespace PL
 
 
         }
-        public static void GetAll()
+        public void GetAll()
         {
+            ResultadoGlobal = 3;
+            //ResultadoFile = 1;
             ML.Result result = BL.Materia.GetAll(new ML.Materia());
 
             if (result.Correct)
@@ -116,11 +122,11 @@ namespace PL
         //Usuario
         public static void Add()
         {
-            string Nombre;
-            bool respuesta;
+            //string Nombre;
+            //bool respuesta;
 
-            respuesta = false;
-            Nombre = "Jesús";
+            //respuesta = false;
+            //Nombre = "Jesús";
 
             ML.Materia materia = new ML.Materia();
             Console.WriteLine("Ingrese el nombre de la materia");
@@ -165,8 +171,17 @@ namespace PL
 
         }
 
+        //Add Update Delete
+        //query
+        //Select
         public static void Update()
         {
+
+            //Materia
+            //IdMateria  Nombre Creditos Costo
+            //
+            Console.WriteLine();
+
 
         }
 

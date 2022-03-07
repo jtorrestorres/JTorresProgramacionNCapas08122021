@@ -1,0 +1,80 @@
+﻿@model ML.Semestre
+@{
+    ViewBag.Title = "Semestres";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>@ViewBag.Title</h2>
+    <h3>Aqui se muestran los datos de la Producto registradas, actualiza,borra o agrega producto</h3>
+    <hr />
+
+    <div class="row">
+        @*<div class="col-md-12 text-right">*@
+        <div class="col-md-12 text-right">
+            @Html.ActionLink("+", "Form", "Semestre", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+
+    </div>
+
+    <br />
+
+    @if (Model.Semestres.Count > 0)
+    {
+        <div class="row" style="padding-top:30px">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <tr>
+                        <th class="text-center" scope="col">
+                            Editar
+                        </th>
+                        <th class="text-center" scope="col">
+                            IdSemestre
+                        </th>
+                        <th class="text-center" scope="col">
+                            Nombre
+                        </th>
+                        <th class="text-center" scope="col">
+                            Eliminar
+                        </th>
+
+                    </tr>
+                    @foreach (ML.Semestre semestre in Model.Semestres)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <a href="@Url.Action("Update", "Semestre" , new { IdSemestre=semestre.IdSemestre })" title="Edit">
+                                    <img style="height:20px; width:20px;" src="../../img/edit2.jpg" />
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                @semestre.IdSemestre
+                            </td>
+                            <td class="text-center">
+                                @semestre.Nombre
+                            </td>
+
+                            <th class="text-center">
+                                <a href="@Url.Action("Delete", "Semestre" , new {IdSemestre=semestre.IdSemestre})" onclick="return confirm('Estas seguro que deseas eliminar estos datos?');">
+                                    <img style="height:20px; width:20px" src="../../img/Borrar.png" />
+                                </a>
+                            </th>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger" role="alert">
+                    No se encontraron registros sobre los semestres
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
