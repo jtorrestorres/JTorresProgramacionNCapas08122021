@@ -1,0 +1,99 @@
+﻿@model ML.Alumno
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Alumno</h2>
+            <hr />
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-1">
+            @Html.LabelFor(model => model.Grupo.Plantel)
+        </div>
+        <div class="col-md-3">
+            @Html.DropDownListFor(model => model.Grupo.Plantel.IdPlantel, new SelectList(Model.Grupo.Plantel.Planteles, "IdPlantel", "Nombre"), "Selecciona una opción", htmlAttributes: new { id = "ddlPlantel", @class = "form-control" })
+        </div>
+        <div class="col-md-1">
+            @Html.LabelFor(model => model.Grupo)
+        </div>
+        <div class="col-md-3">
+            @if (Model.Grupo.Grupos == null)
+            {
+                @Html.DropDownListFor(model => model.Grupo.IdGrupo, new SelectList(string.Empty, "IdGrupo", "Nombre"), "Selecciona una opción", htmlAttributes: new { id = "ddlGrupo", @class = "form-control" })
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.Grupo.IdGrupo, new SelectList(Model.Grupo.Grupos, "IdGrupo", "Nombre"), "Selecciona una opción", htmlAttributes: new { id = "ddlGrupo", @class = "form-control" })
+
+            }
+        </div>
+    </div>
+</div>
+
+@*selectores CSS*@
+@*#   -> Id*@
+@*.   -> Class*@
+<script src="../../Scripts/jquery-3.4.1.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#ddlPlantel").change(function () {
+            $("#ddlGrupo").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetGrupoByIdPlantel")',
+                dataType: 'json',
+                data: { IdPlantel: $("#ddlPlantel").val() },
+                success: function (grupos) {
+                    $("#ddlGrupo").append('<option value="0">' + 'Seleccione una opción' + '</option>');
+                    $.each(grupos, function (i, grupos) {
+                        $("#ddlGrupo").append('<option value="'
+                            + grupos.IdGrupo + '">'
+                            + grupos.Nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+        });
+
+         $("#ddlGrupo").change(function () {
+            $("#ddlAlumno").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetAlumnoByIdGrupo")',
+                dataType: 'json',
+                data: { IdGrupo: $("#ddlGrupo").val() },
+                success: function (alumnos) {
+                    $("#ddlAlumno").append('<option value="0">' + 'Seleccione una opción' + '</option>');
+                    $.each(alumnos, function (i, alumnos) {
+                        $("#ddlAlumno").append('<option value="'
+                            + alumnos.IdAlumno + '">'   
+                            + alumnos.Nombre + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+        });
+
+
+
+    });
+</script>
+
