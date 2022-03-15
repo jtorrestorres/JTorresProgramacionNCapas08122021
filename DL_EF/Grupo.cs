@@ -12,14 +12,12 @@ namespace DL_EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Materia
+    public partial class Grupo
     {
-        public int IdMateria { get; set; }
+        public int IdGrupo { get; set; }
         public string Nombre { get; set; }
-        public Nullable<byte> Creditos { get; set; }
-        public Nullable<decimal> Costo { get; set; }
-        public Nullable<byte> IdSemestre { get; set; }
+        public Nullable<int> IdPlantel { get; set; }
     
-        public virtual Semestre Semestre { get; set; }
+        public virtual Plantel Plantel { get; set; }
     }
 }

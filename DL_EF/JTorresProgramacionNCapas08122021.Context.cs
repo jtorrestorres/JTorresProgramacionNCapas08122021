@@ -34,6 +34,11 @@ namespace DL_EF
         public virtual DbSet<Municipio> Municipios { get; set; }
         public virtual DbSet<Pai> Pais { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Alumno> Alumnoes { get; set; }
+        public virtual DbSet<Grupo> Grupoes { get; set; }
+        public virtual DbSet<Plantel> Plantels { get; set; }
+        public virtual DbSet<Rol> Rols { get; set; }
+        public virtual DbSet<Semestre> Semestres { get; set; }
     
         public virtual int DireccionAdd(string calle, string numeroExterior, string numeroInterior, Nullable<int> idColonia, ObjectParameter idDireccion)
         {
@@ -85,6 +90,51 @@ namespace DL_EF
                 new ObjectParameter("IdMateria", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MateriaGetById_Result>("MateriaGetById", idMateriaParameter);
+        }
+    
+        public virtual ObjectResult<GrupoGetByIdPlantel_Result> GrupoGetByIdPlantel(Nullable<int> idPlantel)
+        {
+            var idPlantelParameter = idPlantel.HasValue ?
+                new ObjectParameter("IdPlantel", idPlantel) :
+                new ObjectParameter("IdPlantel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GrupoGetByIdPlantel_Result>("GrupoGetByIdPlantel", idPlantelParameter);
+        }
+    
+        public virtual ObjectResult<PlantelGetAll_Result> PlantelGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PlantelGetAll_Result>("PlantelGetAll");
+        }
+    
+        public virtual ObjectResult<SemestreGetAll_Result> SemestreGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SemestreGetAll_Result>("SemestreGetAll");
+        }
+    
+        public virtual int AlumnoAdd(string nombre, string apellidoPaterno, string apellidoMaterno, byte[] imagen)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidoPaternoParameter = apellidoPaterno != null ?
+                new ObjectParameter("ApellidoPaterno", apellidoPaterno) :
+                new ObjectParameter("ApellidoPaterno", typeof(string));
+    
+            var apellidoMaternoParameter = apellidoMaterno != null ?
+                new ObjectParameter("ApellidoMaterno", apellidoMaterno) :
+                new ObjectParameter("ApellidoMaterno", typeof(string));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("Imagen", imagen) :
+                new ObjectParameter("Imagen", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AlumnoAdd", nombreParameter, apellidoPaternoParameter, apellidoMaternoParameter, imagenParameter);
+        }
+    
+        public virtual ObjectResult<AlumnoGetAll_Result> AlumnoGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AlumnoGetAll_Result>("AlumnoGetAll");
         }
     }
 }

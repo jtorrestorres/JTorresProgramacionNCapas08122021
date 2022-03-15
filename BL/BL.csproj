@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alumno.cs" />
     <Compile Include="Grupo.cs" />
     <Compile Include="Plantel.cs" />
     <Compile Include="Semestre.cs" />

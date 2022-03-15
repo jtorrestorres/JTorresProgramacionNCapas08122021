@@ -10,16 +10,13 @@
 namespace DL_EF
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Materia
+    public partial class AlumnoGetAll_Result
     {
-        public int IdMateria { get; set; }
+        public int IdAlumno { get; set; }
         public string Nombre { get; set; }
-        public Nullable<byte> Creditos { get; set; }
-        public Nullable<decimal> Costo { get; set; }
-        public Nullable<byte> IdSemestre { get; set; }
-    
-        public virtual Semestre Semestre { get; set; }
+        public string ApellidoPaterno { get; set; }
+        public string ApellidoMaterno { get; set; }
+        public byte[] Imagen { get; set; }
     }
 }
