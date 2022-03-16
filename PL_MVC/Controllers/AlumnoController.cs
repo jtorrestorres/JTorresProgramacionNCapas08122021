@@ -37,15 +37,27 @@ namespace PL_MVC.Controllers
         public ActionResult Form(int? IdAlumno)
         {
             ML.Alumno alumno = new ML.Alumno();
-            //add
-            if(IdAlumno == null)
+            
+            if(IdAlumno != null) //Update
             {
-                View(alumno);
-            }
-            else
-            {
-
+                ML.Result resultAlumno = BL.Alumno.GetById(IdAlumno.Value);
                 //GetById
+
+                if (resultAlumno.Correct)
+                {
+                    //boxing //unboxing
+                    alumno = new ML.Alumno();
+                    // 1)
+                    alumno = (ML.Alumno)resultAlumno.Object;//unboxing
+
+                    // 2)
+                    alumno.IdAlumno = ((ML.Alumno)resultAlumno.Object).IdAlumno;
+                    alumno.Nombre = ((ML.Alumno)resultAlumno.Object).Nombre;
+                    alumno.ApellidoPaterno = ((ML.Alumno)resultAlumno.Object).ApellidoPaterno;
+                    alumno.ApellidoMaterno = ((ML.Alumno)resultAlumno.Object).ApellidoMaterno;
+                    alumno.Imagen = ((ML.Alumno)resultAlumno.Object).Imagen;
+
+                }
 
             }
 
@@ -69,11 +81,23 @@ namespace PL_MVC.Controllers
         {
             HttpPostedFileBase file = Request.Files["fuImagenName"];
             
-            alumno.Imagen= ConvertToByteArray(file);
+            if(file.ContentLength>0)
+            {
+                alumno.Imagen = ConvertToByteArray(file);
+            }
+            
             //string base64    -varchar
             //Arreglo de Bytes -varbinary  //videos
             //BL.Alumno.Add
-            BL.Alumno.AddEF(alumno);
+            if(alumno.IdAlumno==0)
+            {
+                BL.Alumno.AddEF(alumno);
+            }
+            else
+            {
+               // BL.Alumno.AddEF(alumno); //update
+            }
+
 
             return View(alumno);
         }

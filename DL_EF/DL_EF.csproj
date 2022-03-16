@@ -56,6 +56,9 @@
     <Compile Include="AlumnoGetAll_Result.cs">
       <DependentUpon>JTorresProgramacionNCapas08122021.tt</DependentUpon>
     </Compile>
+    <Compile Include="AlumnoGetById_Result.cs">
+      <DependentUpon>JTorresProgramacionNCapas08122021.tt</DependentUpon>
+    </Compile>
     <Compile Include="Colonia.cs">
       <DependentUpon>JTorresProgramacionNCapas08122021.tt</DependentUpon>
     </Compile>

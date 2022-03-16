@@ -55,7 +55,7 @@ namespace BL
                 using (DL_EF.JTorresProgramacionNCapas08122021Entities context = new DL_EF.JTorresProgramacionNCapas08122021Entities())
                 {
                     var resultQuery = context.AlumnoGetAll().ToList();
-                    if (resultQuery.Count>0)
+                    if (resultQuery.Count > 0)
                     {
                         result.Objects = new List<object>();
                         foreach (var objAlumno in resultQuery) //
@@ -77,7 +77,7 @@ namespace BL
                         result.ErrorMessage = "No se insertó el alumno";
                     }
                 }
-            }           
+            }
             catch (Exception ex)
             {
                 result.Correct = false;
@@ -86,5 +86,47 @@ namespace BL
             }
             return result;
         }
+
+
+
+        public static ML.Result GetById(int IdAlumno)
+        {
+            ML.Result result = new ML.Result();
+
+            try
+            {
+                using (DL_EF.JTorresProgramacionNCapas08122021Entities context = new DL_EF.JTorresProgramacionNCapas08122021Entities())
+                {
+                    var resultQuery = context.AlumnoGetById(IdAlumno).FirstOrDefault();
+
+                    if (resultQuery != null)
+                    {
+                        ML.Alumno alumno = new ML.Alumno();
+                        alumno.IdAlumno = resultQuery.IdAlumno;
+                        alumno.Nombre = resultQuery.Nombre;
+                        alumno.ApellidoPaterno = resultQuery.ApellidoPaterno;
+                        alumno.ApellidoMaterno = resultQuery.ApellidoMaterno;
+                        alumno.Imagen = resultQuery.Imagen;
+
+                        result.Object = alumno;//boxing
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                        result.ErrorMessage = "No se insertó el alumno";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+                result.Ex = ex;
+            }
+            return result;
+
+        }
+
     }
 }

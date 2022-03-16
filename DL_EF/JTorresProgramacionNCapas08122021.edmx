@@ -196,6 +196,9 @@
           <Parameter Name="Imagen" Type="varbinary(max)" Mode="In" />
         </Function>
         <Function Name="AlumnoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="AlumnoGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAlumno" Type="int" Mode="In" />
+        </Function>
         <Function Name="DireccionAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Calle" Type="varchar" Mode="In" />
           <Parameter Name="NumeroExterior" Type="varchar" Mode="In" />
@@ -464,6 +467,9 @@
             <Parameter Name="Imagen" Mode="In" Type="Binary" />
           </FunctionImport>
           <FunctionImport Name="AlumnoGetAll" ReturnType="Collection(JTorresProgramacionNCapas08122021Model.AlumnoGetAll_Result)" />
+          <FunctionImport Name="AlumnoGetById" ReturnType="Collection(JTorresProgramacionNCapas08122021Model.AlumnoGetById_Result)">
+            <Parameter Name="IdAlumno" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="MateriaGetAll_Result">
           <Property Type="Int32" Name="IdMateria" Nullable="false" />
@@ -557,6 +563,13 @@
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="AlumnoGetAll_Result">
+          <Property Type="Int32" Name="IdAlumno" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="Imagen" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="AlumnoGetById_Result">
           <Property Type="Int32" Name="IdAlumno" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
@@ -732,6 +745,17 @@
           <FunctionImportMapping FunctionImportName="AlumnoGetAll" FunctionName="JTorresProgramacionNCapas08122021Model.Store.AlumnoGetAll">
             <ResultMapping>
               <ComplexTypeMapping TypeName="JTorresProgramacionNCapas08122021Model.AlumnoGetAll_Result">
+                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AlumnoGetById" FunctionName="JTorresProgramacionNCapas08122021Model.Store.AlumnoGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JTorresProgramacionNCapas08122021Model.AlumnoGetById_Result">
                 <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
