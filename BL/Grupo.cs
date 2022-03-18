@@ -46,10 +46,10 @@ namespace BL
                                 result.Objects = new List<object>();
                                 foreach (DataRow row in tableGrupo.Rows) //
                                 {
-                                    ML.Grupo grupo = new ML.Grupo();
+                                    ML.Grupo grupo = new ML.Grupo(); 
                                     grupo.IdGrupo = int.Parse(row[0].ToString());
                                     grupo.Nombre = row[1].ToString();
-                                    result.Objects.Add(grupo);
+                                    result.Objects.Add(grupo);  
                                 }
 
                                 result.Correct = true;
