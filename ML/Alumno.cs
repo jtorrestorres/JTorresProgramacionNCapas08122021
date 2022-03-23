@@ -13,7 +13,7 @@ namespace ML
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }
         public byte[] Imagen { get; set; }
-        public ML.Grupo Grupo { get; set; }
+        public ML.Grupo Grupo { get; set; } 
         public List<object> Alumnos { get; set; }
     }
 }

@@ -44,8 +44,10 @@
 
                     <div class="input-group">
                         <span class="input-group-addon glyphicon glyphicon-map-marker" id="basic-addon1"></span>
-                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @onkeypress = "return SoloLetras(this, 'lblNombreError')" })
                     </div>
+                    <label class="alert-danger" id="lblNombreError"></label>
+
                     @Html.ValidationMessageFor(model => model.Nombre)
 
                 </div>
@@ -56,8 +58,10 @@
                     @Html.LabelFor(model => model.ApellidoPaterno)
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">@@</span>
-                        @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @onkeypress = "return SoloLetras(this, 'lblApellidoPaternoError')" })
                     </div>
+                    <label class="alert-danger" id="lblApellidoPaternoError"></label>
+
                 </div>
 
                 <div class="col-md-4">
@@ -66,8 +70,11 @@
                         <span class="input-group-addon" id="basic-addon1">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </span>
-                        @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtNombre" })
+
+                        @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @onkeypress = "return SoloLetras(this, 'lblApellidoPaternoError')" })
                     </div>
+                    <label class="alert-danger" id="lblApellidoMaternoError"></label>
+
 
                 </div>
 
@@ -127,6 +134,32 @@
 
             reader.readAsDataURL(input.files[0]);
         }
+    }
+
+    
+    //control -> lbl, txt, btn
+    function SoloLetras(e, controlId) {
+
+        //JavaScript
+        //var txtApellidoPaterno1 = document.getElementById('txtApellidoPaterno');//Id (1)
+        //var txtApellidoPaterno2 = document.getElementsByClassName('txtApellidoPaterno');//Class (+1)
+        ////jQuery
+        //var txtApellidoPaterno3 = $("#txtApellidoPaterno");//ID
+        //var txtApellidoPaterno4 = $(".txtApellidoPaterno");//Class 
+
+
+        var letra = e.onkeypress.arguments[0].key;
+            if (!/[^a-zA-Z]/.test(letra)) {
+                $("#" + controlId).html('');//nombre, ap, am
+            return true;
+        }
+        else {
+                $("#" + controlId).html('Solo se aceptan letras');
+            //alert('Solo se aceptan letras');
+            return false;
+            }
+
+
     }
 
 

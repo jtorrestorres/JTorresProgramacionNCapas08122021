@@ -132,7 +132,7 @@ namespace PL_MVC.Controllers
             {
                 ViewBag.Message = resultMaterias.ErrorMessage;
                 return PartialView("Modal");
-            }
+            } 
 
 
             //HttpPostedFileBase file = Request.Files["archivoTXT"];

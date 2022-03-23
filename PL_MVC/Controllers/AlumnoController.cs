@@ -26,7 +26,7 @@ namespace PL_MVC.Controllers
 
             return View(alumno);
         }
-        f
+        
         public JsonResult GetGrupoByIdPlantel(int IdPlantel)
         {
             ML.Result result = BL.Grupo.GetByIdPlantel(IdPlantel);
@@ -64,7 +64,7 @@ namespace PL_MVC.Controllers
             //update
             return View(alumno);
         }
-
+         
         //fronEnd ->HTML ,CSS JS
         //backEnd -> C#
 
